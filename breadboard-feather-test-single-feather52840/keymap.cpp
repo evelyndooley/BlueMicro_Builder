@@ -19,28 +19,122 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
 
 
 
-std::array<std::array<Key, MATRIX_COLS>, MATRIX_ROWS> matrix =
-    {{
-        {LAYER_1, KC_A,    KC_B ,  KC_C,  KC_D, KC_E,    KC_F ,  KC_G,  KC_H, KC_I,    KC_J ,  KC_K,  KC_L, KC_M,    KC_N ,  KC_O,  KC_P, KC_Q,    KC_R ,  KC_S, KC_ENTER}
-    }};
+// Initialize matrix with nothing...
+YMAP2ARRAY(KEYMAP(
+     std::array<std::array<Key, MATRIX_COLS>, MATRIX_ROWS> matrix =
+    KE   KC_NO,    KC_NO,    KC_NO,    KC_NO,        
+        KC_NO,    KC_NO,    KC_NO,    KC_NO,   
+        KC_NO,    KC_NO,    KC_NO,    KC_NO,     
+        KC_NO,    KC_NO,    KC_NO,    KC_NO,   
+        KC_NO,    KC_NO,    KC_NO,    KC_NO 
+    ));
+
+void updateDisplay(PersistentState* cfg, DynamicState* stat)
+{
+    #ifdef BLUEMICRO_CONFIGURED_DISPLAY
+    u8g2.setFontMode(1);    // Transparent
+    u8g2.setFontDirection(0);
+    battery(22,19,stat->vbat_per);
+    printline(0,28,stat->peer_name_prph);
+
+    char buffer [50];
+    u8g2.setFont(u8g2_font_helvB12_tf); // choose a suitable font
+    switch(stat->layer)
+    {
+        case _L0:     u8g2.drawStr(0,128,""); break;
+        case _L1:      u8g2.drawStr(0,128,"L1");break;
+        case _L2:     u8g2.drawStr(0,128,"L2");break;
+        // case _ADJUST:     u8g2.drawStr(0,128,"A");break;
+        // case _EXTRAL:     u8g2.drawStr(0,128,"EL");break;
+        // case _EXTRAR:     u8g2.drawStr(0,128,"ER");break; 
+        // case _MACROL:     u8g2.drawStr(0,128,"ML");break;
+        // case _MACROR:     u8g2.drawStr(0,128,"MR");break; 
+        // case _MACRO:     u8g2.drawStr(0,128,"M");break;    
+    }
+    #endif
+}
 
 void setupKeymap() {
+    #ifdef BLUEMICRO_CONFIGURED_DISPLAY
+    OLED.setStatusDisplayCallback(updateDisplay);
+    #endif
 
-    uint32_t layer1[MATRIX_ROWS][MATRIX_COLS] =
-        KEYMAP(LAYER_1,   KC_T, KC_U,    KC_V ,  KC_W,  KC_X, KC_Y,    KC_Z ,  KC_1,  KC_2, KC_3,    KC_4 ,  KC_5,  KC_6,  KC_7, KC_8,  KC_9,  KC_0,KC_SPACE, KC_BSPACE, KC_ENTER);
+    /* Numpad
+    * ,------------------------------------------------.
+    * | Esc  |   Q  |   W  |   E  |   R  |   T  |   Y* | 
+    * |------+------+------+------+------+-------------|
+    * | Tab  |   A  |   S  |   D  |   F  |   G  |   H* |
+    * |------+------+------+------+------+------|------|
+    * | Shift|   Z  |   X  |   C  |   V  |   B  |Space |
+    * |------+------+------+------+------+------+------'
+    * | Ctrl | GUI  | Alt  | L(3) | L(1) |Space |
+    * `-----------------------------------------'
+    */
 
-    /*
-     * add the other layers
-     */
+    uint32_t layer0_single[MATRIX_ROWS][MATRIX_COLS] =
+        KEYMAP(
+            LAYER_1,  KC_KP_SLASH,    KC_KP_ASTERISK,    KC_KP_MINUS,     
+            KC_KP_7,  KC_KP_8,    KC_KP_9,    KC_KP_PLUS,   
+            KC_KP_4, KC_KP_5,    KC_KP_6,    KC_NO,    
+            KC_KP_1, KC_KP_2,    KC_KP_3,    KC_NO,    
+            LAYER_2, KC_KP_0, KC_KP_DOT, KC_KP_ENTER
+        );
+
+    /* Layer 1 (Raise) Numpad
+    * ,------------------------------------------------.
+    * |  `   |   1  |   2  |   3  |   4  |   5  |   -  | 
+    * |------+------+------+------+------+-------------|
+    * | Del  |  F1  | F2   |  F3  | F4   |  F5  |  [   |
+    * |------+------+------+------+------+------|------|
+    * | Shift|  F7  | F8   |  F9  |  F10 | F11  |Space |
+    * |------+------+------+------+------+------+------'
+    * | Ctrl | GUI  | Alt  | L(3) | L(1) |Space |
+    * `-----------------------------------------'
+    */
+    uint32_t layer1_single[MATRIX_ROWS][MATRIX_COLS] =
+        KEYMAP( 
+            LAYER_1,  KC_KP_SLASH,    KC_KP_ASTERISK,    KC_KP_MINUS,     
+            KC_KP_7,  KC_KP_8,    KC_KP_9,    KC_KP_PLUS,   
+            KC_KP_4, KC_KP_5,    KC_KP_6,    KC_NO,    
+            KC_KP_1, KC_KP_2,    KC_KP_3,    KC_NO,    
+            LAYER_2, KC_KP_0, KC_KP_DOT, KC_KP_ENTER
+        );
+
+    /* Layer 2 (Raise) Numpad
+    * ,------------------------------------------------.
+    * |  `   |   1  |   2  |   3  |   4  |   5  |   -  | 
+    * |------+------+------+------+------+-------------|
+    * | Del  |  F1  | F2   |  F3  | F4   |  F5  |  [   |
+    * |------+------+------+------+------+------|------|
+    * | Shift|  F7  | F8   |  F9  |  F10 | F11  |Space |
+    * |------+------+------+------+------+------+------'
+    * | Ctrl | GUI  | Alt  | L(3) | L(1) |Space |
+    * `-----------------------------------------'
+    */
+    uint32_t layer2_single[MATRIX_ROWS][MATRIX_COLS] =
+        KEYMAP( 
+            KC_NLCK,  KC_KP_SLASH,    KC_KP_ASTERISK,    KC_KP_MINUS,     
+            KC_KP_7,  KC_KP_8,    KC_KP_9,    KC_KP_PLUS,   
+            KC_KP_4, KC_KP_5,    KC_KP_6,    KC_NO,    
+            KC_KP_1, KC_KP_2,    KC_KP_3,    KC_NO,    
+            LAYER_2, KC_KP_0, KC_KP_DOT, KC_KP_ENTER
+        );
+
+
     for (int row = 0; row < MATRIX_ROWS; ++row)
     {
         for (int col = 0; col < MATRIX_COLS; ++col)
         {
-            matrix[row][col].addActivation(_L1, Method::PRESS, layer1[row][col]);
+            #if KEYBOARD_SIDE == SINGLE
+                matrix[row][col].addActivation(_L0, Method::PRESS, layer0_single[row][col]);
+                matrix[row][col].addActivation(_L1, Method::PRESS, layer1_single[row][col]);
+                matrix[row][col].addActivation(_L2, Method::MT_HOLD, layer2_single[row][col]);
+                
+            #endif
+            // if you want to add Tap/Hold or Tap/Doubletap activations, then you add them below.
+
         }
     }
-
 }
-
 
 
