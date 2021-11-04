@@ -24,18 +24,26 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
 
 #define KEYBOARD_SIDE SINGLE
 
+#define DEVICE_NAME_R                         "kebePad"                          /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAME_L                        "kebePad"                          /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAME_M                         "kebePad"                          /**< Name of device. Will be included in the advertising data. */
 
-#define DEVICE_NAME_R                         "BlueMicro_R"                         /**< Name of device. Will be included in the advertising data. */
-#define DEVICE_NAME_L                         "BlueMicro_L"                         /**< Name of device. Will be included in the advertising data. */
-#define DEVICE_NAME_M                         "BlueMicro"                           /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_MODEL                        "kebePad_v1.0"                          /**< Name of device. Will be included in the advertising data. */
 
-#define DEVICE_MODEL                        "BM"                          /**< Name of device. Will be included in the advertising data. */
+#define MANUFACTURER_NAME                   "ebe"                      /**< Manufacturer. Will be passed to Device Information Service. */
 
-#define MANUFACTURER_NAME                   "BlueMicro Firmware"         /**< Manufacturer. Will be passed to Device Information Service. */
-
-
-
-#define KEYMAP(  K00,   K01,   K02,   K03,  K04,  K05,   K06,   K07,  K08, K09,   K10,   K11,   K12,  K13,  K14,   K15,   K16,  K17, K18,   K19,   K20  ) { \
-	           { K00,   K01,   K02,   K03,  K04,  K05,   K06,   K07,  K08, K09,   K10,   K11,   K12,  K13,  K14,   K15,   K16,  K17, K18,   K19,   K20 } } 
+#define KEYMAP( \
+      k00, k01, k02, k03, \
+      k10, k11, k12, k13, \
+      k20, k21, k22, k23, \
+      k30, k31, k32, k33, \
+      k40, k41, k42, k43 \
+) { \
+    { k00, k01, k02, k03 }, \
+    { k10, k11, k12, k13 }, \
+    { k20, k21, k22, KC_NO }, \
+    { k30, k31, k32, KC_NO }, \
+    { k40, k41, k42, k43 } \
+}  
 
 #endif /* KEYBOARD_CONFIG_H */
