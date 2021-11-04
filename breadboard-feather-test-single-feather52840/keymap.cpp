@@ -20,9 +20,9 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
 
 
 // Initialize matrix with nothing...
-YMAP2ARRAY(KEYMAP(
-     std::array<std::array<Key, MATRIX_COLS>, MATRIX_ROWS> matrix =
-    KE   KC_NO,    KC_NO,    KC_NO,    KC_NO,        
+std::array<std::array<Key, MATRIX_COLS>, MATRIX_ROWS> matrix =
+    KEYMAP2ARRAY(KEYMAP(
+        KC_NO,    KC_NO,    KC_NO,    KC_NO,        
         KC_NO,    KC_NO,    KC_NO,    KC_NO,   
         KC_NO,    KC_NO,    KC_NO,    KC_NO,     
         KC_NO,    KC_NO,    KC_NO,    KC_NO,   
@@ -136,5 +136,9 @@ void setupKeymap() {
         }
     }
 }
+
+
+
+
 
 
