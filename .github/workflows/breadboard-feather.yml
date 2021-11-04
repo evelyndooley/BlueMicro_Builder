@@ -1,7 +1,7 @@
 # Use this workflow to initialize your repository with the fimware you need for your keyboard
 # if you have multiple keyboards, you need to have 1 copy of this file per keyboard
 # rename the name below so that you can see the different keyboards in your github actions
-name: breadboard-promicro
+name: breadboard-feather
 
 # You will need to manually trigger this workflow
 on:  ['workflow_dispatch']
@@ -15,13 +15,13 @@ jobs:
       matrix:
         # Replace the following with the keyboard you want to setup.  
         # Only 1 keyboard is supported.  For more keyboards, copy and rename this file.
-        keyboard: ['breadboard-promicro']
+        keyboard: ['breadboard-feather']
         # Keymap of the keyboard to setup.  Multiple keymaps can be setup following this example: ['default','jpconstantineau']
-        keymap: ['test_keymap']
+        keymap: ['test']
         # keyboard configuration. Multiple configs can be setup following this example: ['left','right']
         keyboard_config: ['single']
         # hardware configuration. 
-        hardware_config: ['bluemicro840v1_0']
+        hardware_config: ['feather52840']
         # Available options
         # feather52832     - use this for most nRF52832 based boards (needs Arduino_nRF52_Bootloader)
         # 4x4macropad_nrf52832 - use this for the 4x4Macropad by jpconstantineau
@@ -30,7 +30,7 @@ jobs:
         # bluemacro_nrf52840
         # nice_nano
         # pca10056 - use this for all other nRF52840 based boards not listed above (needs Arduino_nRF52_Bootloader)
-        compile_with: ['bluemicro_nrf52840']
+        compile_with: ['feathernrf52840']
 
     # you shouldn't need to edit anything below
     steps:
