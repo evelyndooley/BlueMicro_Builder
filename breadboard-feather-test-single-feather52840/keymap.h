@@ -22,13 +22,19 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
 #include "keyboard_config.h"
 #include "advanced_keycodes.h"
 #include "Key.h"
+#include "BlueMicro_display.h"
 #include <array>
 #ifndef KEYMAP_H
 #define KEYMAP_H
 
-#define KC_CAP_D MOD(MOD_LSHIFT, KC_D)
+#ifdef BLUEMICRO_CONFIGURED_DISPLAY
+extern BlueMicro_Display OLED;        // needed to assign the update display callback
+extern DISPLAY_U8G2_CONSTRUCTOR u8g2; // needed to call the display functions
+#endif
 
-#define _QWERTY 0
+// #define KC_CAP_D MOD(MOD_LSHIFT, KC_D)
+
+#define _L0  0
 #define _L1  1
 #define _L2  2
 
