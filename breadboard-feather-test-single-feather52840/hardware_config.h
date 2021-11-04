@@ -28,8 +28,8 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
 #define MATRIX_ROWS 5
 #define MATRIX_COLS 4
 
-#define MATRIX_ROW_PINS {7, 26, 27, 6, 8 }
-#define MATRIX_COL_PINS {4, 5, 30, 28 }
+#define MATRIX_ROW_PINS {6, 9, 10, 11, 12 }
+#define MATRIX_COL_PINS {14, 15, 16, 17 }
 #define UNUSED_PINS {}
 // #define BACKLIGHT_LED_PIN 38 
 // #define DEFAULT_PWM_VALUE 10000            // PWM intensity
@@ -37,13 +37,13 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION COL2ROW
 #define BATTERY_TYPE BATT_LIPO
-#define VBAT_PIN  29
+#define VBAT_PIN  20
 
-#define  STATUS_BLE_LED_PIN  10  //blue = 0.19
-#define  STATUS_KB_LED_PIN 15  //red = 0.17
+#define  STATUS_BLE_LED_PIN  4  //blue = 0.19
+#define  STATUS_KB_LED_PIN 3  //red = 0.17
 
-#define I2C_SDA_PIN 12
-#define I2C_SCK_PIN 11
+#define I2C_SDA_PIN 22
+#define I2C_SCK_PIN 23
 #define DISPLAY_U8G2_CONSTRUCTOR U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C // see https://github.com/olikraus/u8g2/wiki/u8g2setupcpp for reference
 
     
