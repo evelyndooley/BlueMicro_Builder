@@ -133,8 +133,8 @@ void setupKeymap() {
         {
             #if KEYBOARD_SIDE == SINGLE
                 matrix[row][col].addActivation(_L0, Method::PRESS, layer0_single[row][col]);
-                matrix[row][col].addActivation(_L1, Method::MT_HOLD, layer1_single[row][col]);
-                matrix[row][col].addActivation(_L2, Method::MT_HOLD, layer2_single[row][col]);
+                matrix[row][col].addActivation(_L1, Method::PRESS, layer1_single[row][col]);
+                matrix[row][col].addActivation(_L2, Method::PRESS, layer2_single[row][col]);
                 
             #endif
             // if you want to add Tap/Hold or Tap/Doubletap activations, then you add them below.
