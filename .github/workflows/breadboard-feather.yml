@@ -4,7 +4,7 @@
 name: breadboard-feather
 
 # You will need to manually trigger this workflow
-on:  ['workflow_dispatch']
+on:  [push, 'workflow_dispatch']
 
 jobs:
   initialize-firmware:
