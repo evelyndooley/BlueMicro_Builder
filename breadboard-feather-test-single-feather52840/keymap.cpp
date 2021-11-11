@@ -22,11 +22,11 @@ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR P
 // Initialize matrix with nothing...
 std::array<std::array<Key, MATRIX_COLS>, MATRIX_ROWS> matrix =
     KEYMAP2ARRAY(KEYMAP(
-        LAYER_1,  KC_KP_SLASH,    KC_KP_ASTERISK,    KC_KP_MINUS,     
-            KC_KP_7,  KC_KP_8,    KC_KP_9,    KC_KP_PLUS,   
-            KC_KP_4, KC_KP_5,    KC_KP_6,    KC_NO,    
-            KC_KP_1, KC_KP_2,    KC_KP_3,    KC_NO,    
-            LAYER_2, KC_KP_0, KC_KP_DOT, KC_KP_ENTER 
+        LAYER_1,  KC_KP_SLASH,KC_KP_ASTERISK,   KC_KP_MINUS,     
+        KC_KP_7,  KC_KP_8,    KC_KP_9,          KC_KP_PLUS,   
+        KC_KP_4,  KC_KP_5,    KC_KP_6,          KC_NO,    
+        KC_KP_1,  KC_KP_2,    KC_KP_3,          KC_NO,    
+        LAYER_2,  KC_KP_0,    KC_KP_DOT,        KC_KP_ENTER 
     ));
 
 void updateDisplay(PersistentState* cfg, DynamicState* stat)
@@ -41,7 +41,7 @@ void updateDisplay(PersistentState* cfg, DynamicState* stat)
     u8g2.setFont(u8g2_font_helvB12_tf); // choose a suitable font
     switch(stat->layer)
     {
-        case _L0:     u8g2.drawStr(0,128,""); break;
+        case _L0:     u8g2.drawStr(0,128,"kebe"); break;
         case _L1:      u8g2.drawStr(0,128,"L1");break;
         case _L2:     u8g2.drawStr(0,128,"L2");break;
         // case _ADJUST:     u8g2.drawStr(0,128,"A");break;
@@ -60,64 +60,70 @@ void setupKeymap() {
     #endif
 
     /* Numpad
-    * ,------------------------------------------------.
-    * | Esc  |   Q  |   W  |   E  |   R  |   T  |   Y* | 
-    * |------+------+------+------+------+-------------|
-    * | Tab  |   A  |   S  |   D  |   F  |   G  |   H* |
-    * |------+------+------+------+------+------|------|
-    * | Shift|   Z  |   X  |   C  |   V  |   B  |Space |
-    * |------+------+------+------+------+------+------'
-    * | Ctrl | GUI  | Alt  | L(3) | L(1) |Space |
-    * `-----------------------------------------'
+    * ,---------------------------.
+    * |  L1  |  /   |  *   |  -   |
+    * |------+------+------+------|
+    * |  7   |  8   |  9   |      |
+    * |------+------+------|  +   |
+    * |  4   |  5   |  6   |      |
+    * |------+------+------|------|
+    * |  1   |  2   |  3   |      |
+    * |------+------+------+Enter |
+    * |  L2  |  0   |  .   |      |
+    * `---------------------------'
     */
 
     uint32_t layer0_single[MATRIX_ROWS][MATRIX_COLS] =
         KEYMAP(
-            LAYER_1,  KC_KP_SLASH,    KC_KP_ASTERISK,    KC_KP_MINUS,     
-            KC_KP_7,  KC_KP_8,    KC_KP_9,    KC_KP_PLUS,   
-            KC_KP_4, KC_KP_5,    KC_KP_6,    KC_NO,    
-            KC_KP_1, KC_KP_2,    KC_KP_3,    KC_NO,    
-            LAYER_2, KC_KP_0, KC_KP_DOT, KC_KP_ENTER
+            LAYER_1,    KC_KP_SLASH,KC_KP_ASTERISK, KC_KP_MINUS,     
+            KC_KP_7,    KC_KP_8,    KC_KP_9,        KC_KP_PLUS,   
+            KC_KP_4,    KC_KP_5,    KC_KP_6,        KC_NO,    
+            KC_KP_1,    KC_KP_2,    KC_KP_3,        KC_NO,    
+            LAYER_2,    KC_KP_0,    KC_KP_DOT,      KC_KP_ENTER
         );
 
     /* Layer 1 (Raise) Numpad
-    * ,------------------------------------------------.
-    * |  `   |   1  |   2  |   3  |   4  |   5  |   -  | 
-    * |------+------+------+------+------+-------------|
-    * | Del  |  F1  | F2   |  F3  | F4   |  F5  |  [   |
-    * |------+------+------+------+------+------|------|
-    * | Shift|  F7  | F8   |  F9  |  F10 | F11  |Space |
-    * |------+------+------+------+------+------+------'
-    * | Ctrl | GUI  | Alt  | L(3) | L(1) |Space |
-    * `-----------------------------------------'
+    * ,---------------------------.
+    * |  L1  | Sleep|BTInfo| BT1  |
+    * |------+------+------+------|
+    * | RST  | DFU  | UF2  |      |
+    * |------+------+------| BT2  |
+    * |      |      |      |      |
+    * |------+------+------|------|
+    * |      |      |      |      |
+    * |------+------+------+ BT3  |
+    * | Help |      |      |      |
+    * `---------------------------'
     */
     uint32_t layer1_single[MATRIX_ROWS][MATRIX_COLS] =
         KEYMAP( 
-            LAYER_1,  KC_KP_SLASH,    KC_KP_ASTERISK,    KC_KP_MINUS,     
-            KC_KP_7,  KC_KP_8,    KC_KP_9,    KC_KP_PLUS,   
-            KC_KP_4, KC_KP_5,    KC_KP_6,    KC_NO,    
-            KC_KP_1, KC_KP_2,    KC_KP_3,    KC_NO,    
-            LAYER_2, KC_KP_0, KC_KP_DOT, KC_KP_ENTER
+            LAYER_1,    SLEEP_NOW,  PRINT_BLE,  BLEPROFILE_1,     
+            RESET,      DFU,        UF2_DFU,    BLEPROFILE_2,   
+            KC_NO,      KC_NO,      KC_NO,      KC_NO,    
+            KC_NO,      KC_NO,      KC_NO,      KC_NO,    
+            HELP_MODE,  KC_NO,      KC_NO,      BLEPROFILE_3
         );
 
     /* Layer 2 (Raise) Numpad
-    * ,------------------------------------------------.
-    * |  `   |   1  |   2  |   3  |   4  |   5  |   -  | 
-    * |------+------+------+------+------+-------------|
-    * | Del  |  F1  | F2   |  F3  | F4   |  F5  |  [   |
-    * |------+------+------+------+------+------|------|
-    * | Shift|  F7  | F8   |  F9  |  F10 | F11  |Space |
-    * |------+------+------+------+------+------+------'
-    * | Ctrl | GUI  | Alt  | L(3) | L(1) |Space |
-    * `-----------------------------------------'
+    * ,---------------------------.
+    * | NLCK | Home | End  | Bksp |
+    * |------+------+------+------|
+    * |      |  UP  |      |      |
+    * |------+------+------| Del  |
+    * | LEFT | DOWN |RIGHT |      |
+    * |------+------+------|------|
+    * |      |      |      |      |
+    * |------+------+------+ Tab  |
+    * |  L2  |      |      |      |
+    * `---------------------------'
     */
     uint32_t layer2_single[MATRIX_ROWS][MATRIX_COLS] =
         KEYMAP( 
-            KC_NUMLOCK,  KC_KP_SLASH,    KC_KP_ASTERISK,    KC_KP_MINUS,     
-            KC_KP_7,  KC_KP_8,    KC_KP_9,    KC_KP_PLUS,   
-            KC_KP_4, KC_KP_5,    KC_KP_6,    KC_NO,    
-            KC_KP_1, KC_KP_2,    KC_KP_3,    KC_NO,    
-            LAYER_2, KC_KP_0, KC_KP_DOT, KC_KP_ENTER
+            KC_NUMLOCK, KC_HOME,    KC_END,     KC_BSPACE,     
+            KC_NO,      KC_UP,      KC_NO,      KC_DELETE,   
+            KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_NO,    
+            KC_NO,      KC_NO,      KC_NO,      KC_NO,    
+            LAYER_2,    KC_KP_0,    KC_KP_DOT,  KC_TAB
         );
 
 
