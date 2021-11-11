@@ -113,7 +113,7 @@ void setupKeymap() {
     */
     uint32_t layer2_single[MATRIX_ROWS][MATRIX_COLS] =
         KEYMAP( 
-            KC_NLCK,  KC_KP_SLASH,    KC_KP_ASTERISK,    KC_KP_MINUS,     
+            KC_NUMLOCK,  KC_KP_SLASH,    KC_KP_ASTERISK,    KC_KP_MINUS,     
             KC_KP_7,  KC_KP_8,    KC_KP_9,    KC_KP_PLUS,   
             KC_KP_4, KC_KP_5,    KC_KP_6,    KC_NO,    
             KC_KP_1, KC_KP_2,    KC_KP_3,    KC_NO,    
@@ -127,7 +127,7 @@ void setupKeymap() {
         {
             #if KEYBOARD_SIDE == SINGLE
                 matrix[row][col].addActivation(_L0, Method::PRESS, layer0_single[row][col]);
-                matrix[row][col].addActivation(_L1, Method::PRESS, layer1_single[row][col]);
+                matrix[row][col].addActivation(_L1, Method::MT_HOLD, layer1_single[row][col]);
                 matrix[row][col].addActivation(_L2, Method::MT_HOLD, layer2_single[row][col]);
                 
             #endif
