@@ -38,7 +38,7 @@ void updateDisplay(PersistentState* cfg, DynamicState* stat)
     printline(0,28,stat->peer_name_prph);
 
     char buffer [50];
-    u8g2.setFont(u8g2_font_helvB12_tf); // choose a suitable font
+    u8g2.setFont(u8g2_font_helvB08_tf); // choose a suitable font
     switch(stat->layer)
     {
         case _L0:     u8g2.drawStr(0,128,"kebe"); break;
